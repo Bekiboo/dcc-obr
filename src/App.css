@@ -1,0 +1,10 @@
+.die {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  text-align: center;
+  font-family: Berlin Sans FB, Helvetica, Arial, Sans-serif;
+  font-weight: bold;
+}
