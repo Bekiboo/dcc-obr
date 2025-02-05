@@ -1,14 +1,26 @@
 import { useState } from 'react'
 import './App.css'
-import D3 from './components/dice/D3'
+import DicePanel from './components/DicePanel'
+import PlayersPanel from './components/PlayersPanel'
+import Tray from './components/Tray'
 
 function App() {
-  const [count, setCount] = useState(1)
+  const [rolledDice, setRolledDice] = useState<
+    { type: string; result: number }[]
+  >([])
+
+  const rollDie = (type: string, sides: number) => {
+    const result = Math.floor(Math.random() * sides) + 1
+    setRolledDice((prev) => [...prev, { type, result }])
+    // broadcast roll
+  }
 
   return (
-    <>
-      <D3 result={count % 3} color={'35'} />
-    </>
+    <main className="h-screen grid grid-cols-[8rem,1fr] grid-rows-[1fr,12rem]">
+      <PlayersPanel className="col-start-1" />
+      <Tray className="col-start-2" rolledDice={rolledDice} />
+      <DicePanel className="col-span-2 col-start-1" rollDie={rollDie} />
+    </main>
   )
 }
 

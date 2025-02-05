@@ -1,3 +1,6 @@
+/* * {
+  user-select: none;
+} */
 .die {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
