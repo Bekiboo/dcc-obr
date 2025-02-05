@@ -1,171 +1,109 @@
-import { useEffect, useState } from 'react'
+import DieText from './DieText'
+import Stop from './Stop'
 
-const D3 = ({ result, color }: { result: number; color: string }) => {
-  const [resultToRomanNumeral, setResultToRomanNumeral] = useState<string>('I')
-
-  useEffect(() => {
-    const romanNumerals = ['I', 'II', 'III']
-    setResultToRomanNumeral(romanNumerals[result - 1])
-  }, [result])
-
+const D3 = ({ result, color }: { result: number; color: number }) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      x="0"
-      y="0"
-      width="155.894"
-      height="143.462"
-      viewBox="0, 0, 155.894, 143.462"
-    >
-      <defs>
-        <linearGradient
-          id="D3_gradient_1"
-          gradientUnits="userSpaceOnUse"
-          x1="-1.291"
-          y1="1"
-          x2="-0.256"
-          y2="1"
-          gradientTransform="matrix(-73.756, 59.733, 59.733, 73.756, -72.342, 49.985)"
-        >
-          <stop offset="0" stop-color={`hsl(${color}, 100%, 50%)`} />
-          <stop offset="1" stop-color={`hsl(${color}, 100%, 30%)`} />
-        </linearGradient>
-        <linearGradient
-          id="D3_gradient_2"
-          gradientUnits="userSpaceOnUse"
-          x1="-1"
-          y1="0.774"
-          x2="0"
-          y2="0.774"
-          gradientTransform="matrix(-95.344, 78, 78, 95, 7.802, 18.809)"
-        >
-          <stop offset="0" stop-color={`hsl(${color}, 100%, 50%)`} />
-          <stop offset="1" stop-color={`hsl(${color}, 100%, 30%)`} />
-        </linearGradient>
-        <linearGradient
-          id="D3_gradient_3"
-          gradientUnits="userSpaceOnUse"
-          x1="-1.592"
-          y1="0.316"
-          x2="-0.592"
-          y2="0.316"
-          gradientTransform="matrix(-92.497, 22, 22, 92.498, 0.884, 11)"
-        >
-          <stop offset="0" stop-color={`hsl(${color}, 100%, 50%)`} />
-          <stop offset="1" stop-color={`hsl(${color}, 100%, 30%)`} />
-        </linearGradient>
-      </defs>
-      <g id="dice" transform="translate(5, 4.329)">
-        <g id="d3r">
-          <path
-            d="M8,18 L0,28 L0,107 C0,114 4,118 12,119 L88,133 L87,33 L7,18 z"
-            fill="url(#D3_gradient_1)"
-          />
-          <path
-            d="M88,33 L87,71 L88,133 L111,123 L139,109 L143,98 L146,33 L144,18 L88,33 z"
-            fill="url(#D3_gradient_2)"
-          />
-          <path
-            d="M63,-0 L24,10.862 L8.433,18.397 L16.365,20.806 L87.582,33.935 L144.246,18.397 L131.262,10 L63,-0 z"
-            fill="url(#D3_gradient_3)"
-          />
-          <path
-            id="d3Color"
-            d="M87,133 C87,133 27,125 11,118 C0,116 0,108 0,108 L0,30 C0,30 -0,23 8,16 C12,14 21,10 21,10 C35,6 50,2 60,0 C60,-1 93,4 129,10 C129,10 139,14 141,16 C144,19 145,26 145,26 L142,95 C142,95 140,106 139,109 C137,111 132,114 132,114 L87,133 z"
-            fill="#996600"
-            fill-opacity="0.3"
-          />
-          <path
-            d="M87,134 C87,134 27.435,125.864 11.78,119.522 C0.708,116.727 0.793,109.429 0.793,109.429 L0,30.698 C0,30.698 -0.588,24.565 8.871,17 C12.95,15.222 21.746,11.557 21.746,11.557 C35.419,7.662 50,3 60.772,0.903 C60.694,-0.538 93.364,4.965 129.267,11 C129.267,11 139,14.783 141.819,17.506 C144.309,19.954 145.894,27.491 145.894,27.491 L142.578,96.418 C142.578,96.418 140.919,106.895 139.276,110 C137.939,112.564 132.711,115 132.711,115 L87,134 z"
-            fill-opacity="0"
-            stroke="#151515"
-            stroke-width="4"
-          />
-          <path
-            d="M7,20 L87.341,35 L143,19"
-            fill-opacity="0"
-            stroke="#151515"
-            stroke-width="1.906"
-          />
-          <path
-            d="M87,134 L87.341,34.838"
-            fill-opacity="0"
-            stroke="#151515"
-            stroke-width="1.906"
-          />
-          <path
-            d="M78,33.213 L87,41.706 L95.308,32.438 L87,32.814 L78,33.213 z"
-            fill="#151515"
-          />
-          <path
-            d="M126.305,87.522 L111.342,54.919 L121.788,53.309 L116.293,85.67"
-            fill-opacity="0"
-            stroke="#151515"
-            stroke-width="1.95"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-miterlimit="1"
-          />
-          <path
-            d="M83,19.663 L71,10 L63.677,12 L72.324,21.867 L80.627,14.321"
-            fill-opacity="0"
-            stroke="#151515"
-            stroke-width="1.9"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-miterlimit="1"
-          />
-          <text transform="matrix(1, 0.045, -0.045, 1, 44.8, 78.7)">
-            <tspan
-              className="die"
-              text-anchor="middle"
-              alignment-baseline="middle"
-              id="d3text"
-              x="0"
-              y="0"
-              font-size="40"
-              fill="#151515"
-            >
-              {resultToRomanNumeral}
-            </tspan>
-          </text>
-
-          <g
-            id="mod"
-            transform="translate(0, -2)"
-            style={{ opacity: 0, visibility: 'hidden' }}
+    <>
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 128 134"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20 104.5L37.5 117L51 121.5L70.5 123L89.5 118.5L102.5 111.5L93 105L85.5 84.5L81.5 66L80.5 47.5L82 33.5L84.5 26.5L88 20.5L95 16L79.5 9L64.6668 6.99999L63 18L56 34L33.5 64.5L18 77L5.5 79.5L12.5 94.5L20 104.5Z"
+          fill="url(#paint0_linear_1_27)"
+        />
+        <path
+          d="M58.1216 7.94222C57.6012 8.00936 57.1249 7.64196 57.0578 7.1216C56.9907 6.60124 57.3581 6.12498 57.8784 6.05784L58.1216 7.94222ZM57.8784 6.05784C65.8018 5.03546 74.0686 6.31547 81.2186 8.53005C88.3621 10.7426 94.4739 13.9142 98.0869 16.753L96.9131 18.247C93.5261 15.5858 87.6379 12.5074 80.6564 10.345C73.6814 8.18457 65.6981 6.96459 58.1216 7.94222L57.8784 6.05784Z"
+          fill="black"
+        />
+        <path
+          d="M107.5 107.5C79 133 22 131 4.5 76.5"
+          stroke="black"
+          strokeWidth="1.9"
+          strokeMiterlimit="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M92 102.5L99 110L104 110L110 104.5L114.5 87.5L114.5 59.5L108 31.5L101.5 21L95.5 16.5L89.5 19L84 26.5L80.5 45L83.5 79L92 102.5Z"
+          fill="url(#paint1_linear_1_27)"
+        />
+        <path
+          d="M94.4996 16.5004C116.5 18 123.5 110.5 101.499 110.501C84.5 110.501 68 23 94.4996 16.5004Z"
+          stroke="black"
+          strokeWidth="1.9"
+          strokeMiterlimit="1"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M62.5 19L64.5 10L63 7L55.5 7.5L40.5 17L23 36L8.5 58.5L4 73.5L6.49993 79.5L17 77.5L31.5 66.5L51.5 41L62.5 19Z"
+          fill="url(#paint2_linear_1_27)"
+        />
+        <path
+          d="M5.99928 78.9996C-6 67 44 0.999987 62.9993 6.99958C73.5 10.3155 30.5 84.5 5.99928 78.9996Z"
+          stroke="black"
+          strokeWidth="1.9"
+          strokeMiterlimit="1"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M4.5 68L7.5 86L17.5 102L32.5 115.5L48.5 122.5L63.5 124.5L88 120.5L107.5 109.5L115.5 92L115.5 66.5L112 41L97 15L69 5.49999L50.5 7.99999L21.5 34.5L4.5 68Z"
+          fill="#996600"
+          fillOpacity="0.3"
+        />
+        <path
+          d="M5 71C2 96 46.5 149 105.5 110.5C124 99.5 116 33.5 96.5 15.5C92.311 11.6332 70.2269 3.65463 56 6.49999C41 9.49998 8.23672 44.0274 5 71Z"
+          stroke="black"
+          strokeWidth="4"
+          strokeMiterlimit="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <DieText
+          id="d3text"
+          matrix="matrix(1, 0.35, -0.35, .9, 69, 32)"
+          result={result}
+        />
+        <defs>
+          <linearGradient
+            id="paint0_linear_1_27"
+            x1="84.5"
+            y1="3"
+            x2="41"
+            y2="130"
+            gradientUnits="userSpaceOnUse"
           >
-            <g id="modShape" opacity="0.87">
-              <path
-                d="M0.608,100 L141.266,100 L141.266,130.656 L0.608,130.656 z"
-                fill="#FFFFCC"
-              />
-              <path
-                d="M0.608,100 L141.266,100 L141.266,130.656 L0.608,130.656 z"
-                fill-opacity="0"
-                stroke="#151515"
-                stroke-width="1"
-                stroke-linejoin="round"
-              />
-            </g>
-            <text transform="matrix(1, 0, 0, 1, 71.432, 116)">
-              <tspan
-                className="die"
-                text-anchor="middle"
-                alignment-baseline="middle"
-                id="modText"
-                x="0"
-                y="1"
-                font-size="20"
-                fill="#151515"
-              />
-            </text>
-          </g>
-        </g>
-      </g>
-    </svg>
+            <stop offset="0.03" stopColor={`hsl(${color}, 100%, 30%)`} />
+            <stop offset="0.18" stopColor={`hsl(${color}, 100%, 50%)`} />
+            <stop offset="0.47" stopColor={`hsl(${color}, 100%, 30%)`} />
+            <stop offset=".8" stopColor={`hsl(${color}, 100%, 40%)`} />
+          </linearGradient>
+          <linearGradient
+            id="paint1_linear_1_27"
+            x1="156.5"
+            y1="63"
+            x2="-11.9217"
+            y2="73.4996"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop color={color} />
+          </linearGradient>
+          <linearGradient
+            id="paint2_linear_1_27"
+            x1="-20"
+            y1="29.5"
+            x2="77.6607"
+            y2="143.091"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop color={color} />
+          </linearGradient>
+        </defs>
+      </svg>
+    </>
   )
 }
 
