@@ -11,7 +11,7 @@ const Tray = ({ className, rolledDice }: TrayProps) => {
   return (
     <div className={className}>
       <h2 className="text-xl font-semibold">Tray</h2>
-      <div className="flex flex-wrap gap-2 p-2 border border-gray-300 rounded">
+      <div className="flex flex-wrap w-screen gap-2 p-2 border border-gray-300 rounded">
         {rolledDice.map((die, index) => {
           return (
             <motion.div
