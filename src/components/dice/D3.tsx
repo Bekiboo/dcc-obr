@@ -30,7 +30,7 @@ const D3 = ({
         <path
           d="M107.5 107.5C79 133 22 131 4.5 76.5"
           stroke="black"
-          strokeWidth="1.9"
+          strokeWidth="2"
           strokeMiterlimit="1"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -42,7 +42,7 @@ const D3 = ({
         <path
           d="M94.5 16.5C116.5 18 123.5 110 101.5 110C84.5 110 68 23 94.5 16.5Z"
           stroke="black"
-          strokeWidth="1.9"
+          strokeWidth="2"
           strokeMiterlimit="1"
           strokeLinejoin="round"
         />
@@ -53,7 +53,7 @@ const D3 = ({
         <path
           d="M6 79C-6 67 44 1 63 7C73.5 10.3 30.5 84.5 6 79Z"
           stroke="black"
-          strokeWidth="1.9"
+          strokeWidth="2"
           strokeMiterlimit="1"
           strokeLinejoin="round"
         />
