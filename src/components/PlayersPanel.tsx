@@ -1,10 +1,8 @@
-import { Button } from './ui/button'
 import { cn } from '../lib/utils'
 
 const PlayersPanel = ({ className }: { className?: string }) => {
   return (
     <div className={cn('p-4', className)}>
-      <Button>Add Player</Button>
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold">Players</h2>
         <button className="underline text-accent">Add Player</button>

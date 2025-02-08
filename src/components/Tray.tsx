@@ -1,22 +1,10 @@
 import * as motion from 'motion/react-client'
-import D3 from './dice/D3'
-import D4 from './dice/D4'
-import D6 from './dice/D6'
 import { DieType } from '../App'
-
-// Create a mapping from DieType to their corresponding components
-const diceComponents: Record<
-  DieType,
-  React.FC<{ result: number; color: number }>
-> = {
-  D3,
-  D4,
-  D6,
-}
+import Die from './dice/Die'
 
 interface TrayProps {
   className?: string
-  rolledDice: { type: DieType; result: number }[]
+  rolledDice: { id: string; type: DieType; result: number }[]
 }
 
 const Tray = ({ className, rolledDice }: TrayProps) => {
@@ -25,7 +13,6 @@ const Tray = ({ className, rolledDice }: TrayProps) => {
       <h2 className="text-xl font-semibold">Tray</h2>
       <div className="flex flex-wrap gap-2 p-2 border border-gray-300 rounded">
         {rolledDice.map((die, index) => {
-          const DieComponent = diceComponents[die.type]
           return (
             <motion.div
               key={index}
@@ -43,7 +30,13 @@ const Tray = ({ className, rolledDice }: TrayProps) => {
               }}
               className="w-16 h-16"
             >
-              <DieComponent result={die.result} color={0} />
+              <Die
+                key={die.id}
+                result={die.result}
+                color={200}
+                type={die.type}
+                size={16}
+              />
             </motion.div>
           )
         })}

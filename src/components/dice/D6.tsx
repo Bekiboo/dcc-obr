@@ -1,7 +1,15 @@
 import DieText from './DieText'
 import Stop from './Stop'
 
-const D6 = ({ result, color }: { result: number; color: number }) => {
+const D6 = ({
+  result,
+  color,
+  randId,
+}: {
+  result: number
+  color: number
+  randId: string
+}) => {
   return (
     <>
       <svg
@@ -16,15 +24,15 @@ const D6 = ({ result, color }: { result: number; color: number }) => {
           <g id="d6r">
             <path
               d="M8,20 L0,28 L0,100 C0,114 4,118 8,119 L88,133 L87,35 L7,20 z"
-              fill="url(#D6_gradient_1)"
+              fill={`url(#${randId})`}
             />
             <path
               d="M88,33 L87,71 L88,133 L118,123 L139,109 L143,98 L146,33 L144,18 L92,33 z"
-              fill="url(#D6_gradient_2)"
+              fill={`url(#${randId})`}
             />
             <path
               d="M63,0 L24,10 L4,20 L16,22 L90,35 L144,18 L131,10 L63,-0 z"
-              fill="url(#D6_gradient_3)"
+              fill={`url(#${randId})`}
             />
             <path
               id="d6Color"
@@ -113,7 +121,7 @@ const D6 = ({ result, color }: { result: number; color: number }) => {
         </g>
         <defs>
           <linearGradient
-            id="D6_gradient_1"
+            id={randId}
             gradientUnits="userSpaceOnUse"
             x1="0"
             y1="200"
@@ -123,7 +131,7 @@ const D6 = ({ result, color }: { result: number; color: number }) => {
             <Stop color={color} />
           </linearGradient>
           <linearGradient
-            id="D6_gradient_2"
+            id={randId}
             gradientUnits="userSpaceOnUse"
             x1="145"
             y1="145"
@@ -133,7 +141,7 @@ const D6 = ({ result, color }: { result: number; color: number }) => {
             <Stop color={color} />
           </linearGradient>
           <linearGradient
-            id="D6_gradient_3"
+            id={randId}
             gradientUnits="userSpaceOnUse"
             x1="84"
             y1="2"

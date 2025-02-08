@@ -7,7 +7,15 @@ const pathAttributes: { [key: string]: string } = {
   strokeLinejoin: 'round',
 }
 
-const D4 = ({ result, color }: { result: number; color: number }) => {
+const D4 = ({
+  result,
+  color,
+  randId,
+}: {
+  result: number
+  color: number
+  randId: string
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,11 +29,11 @@ const D4 = ({ result, color }: { result: number; color: number }) => {
         <g id="d4">
           <path
             d="M50, 4 L1, 85 L2, 95 L28, 116 L51, 4 L50, 4 z"
-            fill="url(#D4_gradient_1)"
+            fill={`url(#${randId})`}
           />
           <path
             d="M28, 117 L52, 1 C56, -1 61, -0 65, 4 L130, 89 C130, 98 128, 103 125, 103 L42, 119 C37, 119 32, 118 28, 117 z"
-            fill="url(#D4_gradient_2)"
+            fill={`url(#${randId})`}
           />
           <path
             id="d4Color"
@@ -99,7 +107,7 @@ const D4 = ({ result, color }: { result: number; color: number }) => {
       <defs>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id="D4_gradient_1"
+          id={randId}
           x1={-10}
           y1={10}
           x2={50}
@@ -109,7 +117,7 @@ const D4 = ({ result, color }: { result: number; color: number }) => {
         </linearGradient>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id="D4_gradient_2"
+          id={randId}
           x1={100}
           y1={100}
           x2={75}
