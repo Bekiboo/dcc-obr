@@ -1,12 +1,26 @@
 import { useState } from 'react'
 import './App.css'
 import DicePanel from './components/DicePanel'
-import PlayersPanel from './components/PlayersPanel'
+// import PlayersPanel from './components/PlayersPanel'
 import Tray from './components/Tray'
 import DiceRollSound from './components/DiceRollSound'
 import OBR from '@owlbear-rodeo/sdk'
 
-export type DieType = 'D3' | 'D4' | 'D6'
+export type DieType =
+  | 'D3'
+  | 'D4'
+  | 'D5'
+  | 'D6'
+  | 'D7'
+  | 'D8'
+  | 'D10'
+  | 'D12'
+  | 'D14'
+  | 'D16'
+  | 'D20'
+  | 'D24'
+  | 'D30'
+  | 'D100'
 console.log(OBR.room.id)
 
 function App() {
@@ -34,7 +48,7 @@ function App() {
 
   return (
     <main className="h-screen grid grid-cols-[8rem,1fr] grid-rows-[1fr,12rem] bg-stone-800 overflow-hidden text-white">
-      <PlayersPanel className="col-start-1" />
+      {/* <PlayersPanel className="col-start-1" /> */}
       <Tray className="col-start-2" rolledDice={rolledDice} />
       <DicePanel className="col-span-2 col-start-1" rollDice={rollDice} />
       <DiceRollSound setPlayDiceRoll={setPlayDiceRoll} />

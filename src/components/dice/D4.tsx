@@ -29,11 +29,11 @@ const D4 = ({
         <g id="d4">
           <path
             d="M50, 4 L1, 85 L2, 95 L28, 116 L51, 4 L50, 4 z"
-            fill={`url(#${randId})`}
+            fill={`url(#${randId}_0)`}
           />
           <path
             d="M28, 117 L52, 1 C56, -1 61, -0 65, 4 L130, 89 C130, 98 128, 103 125, 103 L42, 119 C37, 119 32, 118 28, 117 z"
-            fill={`url(#${randId})`}
+            fill={`url(#${randId}_1)`}
           />
           <path
             id="d4Color"
@@ -107,7 +107,7 @@ const D4 = ({
       <defs>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id={randId}
+          id={`${randId}_0`}
           x1={-10}
           y1={10}
           x2={50}
@@ -117,7 +117,7 @@ const D4 = ({
         </linearGradient>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id={randId}
+          id={`${randId}_1`}
           x1={100}
           y1={100}
           x2={75}
