@@ -35,22 +35,39 @@ const DicePanel = ({
     setSelectedDice((prev) => ({ ...prev, [type]: (prev[type] || 0) + 1 }))
   }
 
-  // const handleDoubleClick = (type: string, sides: number) => {
-  //   // if (dice.some((die) => die.selected > 0 && die.type !== type)) {
-  //   return
-  //   // }
-  //   // rollDice([sides])
-  //   // uneselect all dice
-  //   // setDice((prev) => prev.map((die) => ({ ...die, selected: 0 })))
-  // }
+  const uneselectDie = (type: string) => {
+    setSelectedDice((prev) => ({ ...prev, [type]: (prev[type] || 0) - 1 }))
+  }
 
   const rollAllDice = () => {
     rollDice(
-      Object.keys(selectedDice).map(
-        (type) => dice.find((die) => die.type === type)!.sides
-      )
+      Object.entries(selectedDice).reduce<number[]>((acc, [type, count]) => {
+        return [
+          ...acc,
+          ...Array.from({ length: count }).map(
+            () => dice.find((die) => die.type === type)?.sides || 0
+          ),
+        ]
+      }, [])
     )
     setSelectedDice({})
+  }
+
+  const rollOneDie = (type: string) => {
+    rollDice([dice.find((die) => die.type === type)?.sides || 0])
+  }
+
+  // start timer one mouse down, clear timer on mouse up
+  // if timer is cleared before mouse up, roll dice
+  let timer: ReturnType<typeof setTimeout>
+  const handleMouseDown = (type: string) => {
+    timer = setTimeout(() => rollOneDie(type), 250)
+  }
+  const handleMouseUp = (type: string) => {
+    if (timer != undefined) {
+      selectDie(type)
+    }
+    clearTimeout(timer)
   }
 
   return (
@@ -63,31 +80,29 @@ const DicePanel = ({
         >
           Roll
         </Button>
-        {/* <ul className="flex h-10">
-          {dice.map(({ type, sides, Component }) =>
-            selected > 0
-              ? Array.from({ length: selected }).map((_, index) => (
-                  <li
-                    key={`${type}-${index}`}
-                    className="flex items-center gap-2"
-                  >
-                    <Component result={sides} color={300} />
-                  </li>
-                ))
-              : null
-          )}
-        </ul> */}
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1">
         {dice.map(({ type, sides }) => (
-          <button
-            key={type}
-            onClick={() => selectDie(type)}
-            // onDoubleClick={() => handleDoubleClick(type, sides)}
-          >
-            <Die result={sides} color={45} type={type} size={12} />
-          </button>
+          <div className="relative">
+            <button
+              key={type}
+              // onClick={() => selectDie(type)}
+              onMouseDown={() => handleMouseDown(type)}
+              onMouseUp={() => handleMouseUp(type)}
+              // onDoubleClick={() => handleDoubleClick(type, sides)}
+            >
+              <Die result={sides} color={45} type={type} size={'3.25rem'} />
+            </button>
+            {selectedDice[type] > 0 && (
+              <button
+                className="absolute top-0 right-0 w-6 h-6 font-bold text-white bg-red-500 rounded-full"
+                onClick={() => uneselectDie(type)}
+              >
+                {selectedDice[type]}
+              </button>
+            )}
+          </div>
         ))}
       </div>
     </div>

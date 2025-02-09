@@ -31,6 +31,7 @@ function App() {
   const [playDiceRoll, setPlayDiceRoll] = useState<(() => void) | null>(null)
 
   const rollDice = (dice: number[]) => {
+    console.log(dice)
     setRolledDice([])
 
     setTimeout(() => {
@@ -50,7 +51,10 @@ function App() {
     <main className="h-screen grid grid-cols-[20%,80%] grid-rows-[1fr,12rem] bg-stone-800 overflow-hidden text-white">
       {/* <PlayersPanel className="col-start-1" /> */}
       <Tray className="w-full col-start-2" rolledDice={rolledDice} />
-      <DicePanel className="col-span-2 col-start-1" rollDice={rollDice} />
+      <DicePanel
+        className="w-screen col-span-2 col-start-1"
+        rollDice={rollDice}
+      />
       <DiceRollSound setPlayDiceRoll={setPlayDiceRoll} />
     </main>
   )

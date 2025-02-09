@@ -35,7 +35,7 @@ const Tray = ({ className, rolledDice }: TrayProps) => {
                 result={die.result}
                 color={200}
                 type={die.type}
-                size={16}
+                size={'full'}
               />
             </motion.div>
           )

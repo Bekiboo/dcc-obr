@@ -20,7 +20,7 @@ const Die = ({
   color,
 }: {
   type: string
-  size: number
+  size: number | string
   result: number
   color: number
 }) => {
@@ -63,7 +63,8 @@ const Die = ({
 
   return (
     <>
-      <div className={`h-${size} w-${size}`}>{renderDie()}</div>
+      {/* <div className={`h-${size} w-${size}`}>{renderDie()}</div> */}
+      <div style={{ width: size, height: size }}>{renderDie()}</div>
     </>
   )
 }
