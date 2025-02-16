@@ -1,3 +1,4 @@
+import DieText from './DieText'
 import Stop from './Stop'
 
 const pathAttributes: { [key: string]: string } = {
@@ -209,51 +210,11 @@ const D5 = ({
             {...runePathAttributes}
           />
 
-          <text transform="matrix(0.999, 0.051, -0.051, 0.999, 57.829, 66.542)">
-            <tspan
-              className="die"
-              textAnchor="middle"
-              alignmentBaseline="middle"
-              id="d5text"
-              x="-1"
-              y="0"
-              fontSize="36"
-              fill="#000000"
-            >
-              {result}
-            </tspan>
-          </text>
-          <g
-            id="mod"
-            transform="translate(4, -20)"
-            style={{ opacity: 0, visibility: 'hidden' }}
-          >
-            <g id="modShape" opacity="0.87">
-              <path
-                d="M0.608,100.007 L122.518,100.007 L122.518,130.656 L0.608,130.656 z"
-                fill="#FFFFCC"
-              />
-              <path
-                d="M0.608,100.007 L122.518,100.007 L122.518,130.656 L0.608,130.656 z"
-                fillOpacity="0"
-                stroke="#000000"
-                strokeWidth="1"
-                strokeLinejoin="round"
-              />
-            </g>
-            <text transform="matrix(1, 0, 0, 1, 61.165, 115.26)">
-              <tspan
-                className="die"
-                textAnchor="middle"
-                alignmentBaseline="middle"
-                id="modText"
-                x="0"
-                y="1"
-                fontSize="20"
-                fill="#000000"
-              />
-            </text>
-          </g>
+          <DieText
+            id="d6text"
+            matrix="matrix(1, 0.05, -0.05, 1, 58, 66)"
+            result={result}
+          />
         </g>
       </g>
     </svg>
