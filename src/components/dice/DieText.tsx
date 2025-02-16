@@ -15,7 +15,6 @@ const DieText = ({
         alignmentBaseline="middle"
         id={id}
         x="1"
-        y="0"
         fontSize="36"
         fill="black"
       >
