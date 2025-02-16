@@ -32,6 +32,13 @@ const DicePanel = ({
   )
 
   const selectDie = (type: string) => {
+    const totalSelected = Object.values(selectedDice).reduce(
+      (acc, count) => acc + count,
+      0
+    )
+
+    if (totalSelected >= 10) return
+
     setSelectedDice((prev) => ({ ...prev, [type]: (prev[type] || 0) + 1 }))
   }
 
@@ -71,28 +78,27 @@ const DicePanel = ({
   }
 
   return (
-    <div className={cn('', className)}>
-      <div className="flex gap-5">
-        <Button
-          disabled={Object.values(selectedDice).every((value) => value === 0)}
-          onClick={() => rollAllDice()}
-          className="dark"
-        >
-          Roll
-        </Button>
-      </div>
-
+    <div className={cn('flex gap-1', className)}>
+      <Button
+        disabled={Object.values(selectedDice).every((value) => value === 0)}
+        onClick={() => rollAllDice()}
+        className="flex flex-col justify-center w-4 h-full dark"
+      >
+        <span className="leading-3">R</span>
+        <span className="leading-3">o</span>
+        <span className="leading-3">l</span>
+        <span className="leading-3">l</span>
+      </Button>
       <div className="flex flex-wrap gap-1">
-        {dice.map(({ type, sides }) => (
-          <div className="relative">
+        {dice.map(({ type, sides }, index) => (
+          <div key={index} className="relative">
             <button
-              key={type}
-              // onClick={() => selectDie(type)}
+              className="relative"
               onMouseDown={() => handleMouseDown(type)}
               onMouseUp={() => handleMouseUp(type)}
-              // onDoubleClick={() => handleDoubleClick(type, sides)}
             >
-              <Die result={sides} color={45} type={type} size={'3.25rem'} />
+              <div className="absolute w-full h-full " />
+              <Die result={sides} color={40} type={type} size={'3rem'} />
             </button>
             {selectedDice[type] > 0 && (
               <button
