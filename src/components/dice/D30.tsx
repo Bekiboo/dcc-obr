@@ -99,10 +99,12 @@ const D30 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <svg
@@ -120,7 +122,7 @@ const D30 = ({
             {...gradient}
             gradientUnits="userSpaceOnUse"
           >
-            {Stop({ color: color })}
+            {Stop({ color: color, saturation: saturation })}
           </linearGradient>
         ))}
       </defs>

@@ -5,10 +5,12 @@ const D20 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <svg
@@ -27,7 +29,7 @@ const D20 = ({
           y2="1.479"
           gradientTransform="matrix(-34.003, -48.614, 36.271, -45.576, 297.188, 523.912)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_1`}
@@ -38,7 +40,7 @@ const D20 = ({
           y2="1.454"
           gradientTransform="matrix(-36.256, -50.963, 38.673, -47.777, 237.358, 524.962)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_2`}
@@ -49,7 +51,7 @@ const D20 = ({
           y2="10.213"
           gradientTransform="matrix(-68.801, -17.729, 73.389, -16.62, 282.748, 440.229)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_3`}
@@ -60,7 +62,7 @@ const D20 = ({
           y2="3.773"
           gradientTransform="matrix(-88.277, -24.61, 24.61, -88.277, 311.628, 488.972)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_4`}
@@ -71,7 +73,7 @@ const D20 = ({
           y2="8.413"
           gradientTransform="matrix(-2.205, 26.126, -26.126, -2.205, 256.518, 503.622)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_5`}
@@ -82,7 +84,7 @@ const D20 = ({
           y2="-10.41"
           gradientTransform="matrix(30.46, -27.81, 27.81, 30.46, 278.188, 471.034)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_6`}
@@ -93,7 +95,7 @@ const D20 = ({
           y2="-8.169"
           gradientTransform="matrix(25.198, 16.201, -16.201, 25.198, 189.708, 450.51)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
       </defs>
       <g id="dice" transform="translate(2.362, 3)">

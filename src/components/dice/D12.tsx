@@ -5,10 +5,12 @@ const D12 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <svg
@@ -29,7 +31,7 @@ const D12 = ({
           y2="-4"
           gradientTransform="matrix(36, -26, -39, -25, -236, 55)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_1`}
@@ -40,7 +42,7 @@ const D12 = ({
           y2="-4"
           gradientTransform="matrix(36, -28, -39, -26, -295, 57)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_2`}
@@ -51,7 +53,7 @@ const D12 = ({
           y2="-3.5"
           gradientTransform="matrix(31, -20, -20, -31, -305, 101)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_3`}
@@ -62,7 +64,7 @@ const D12 = ({
           y2="-3"
           gradientTransform="matrix(44, -15, -47, -14, -267, 133)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_4`}
@@ -73,7 +75,7 @@ const D12 = ({
           y2="-9.957"
           gradientTransform="matrix(15, -35, -16, -33, -208, 114)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_5`}
@@ -84,7 +86,7 @@ const D12 = ({
           y2="3"
           gradientTransform="matrix(-48, 61, 61, 48, -200, 28)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
       </defs>
       <g id="dice" transform="translate(1.89, 1.633)">

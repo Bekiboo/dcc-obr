@@ -5,10 +5,12 @@ const D8 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <svg
@@ -29,7 +31,7 @@ const D8 = ({
           y2="6.5"
           gradientTransform="matrix(-34.7, -50, 37, -46.831, 130, 793)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_1`}
@@ -40,7 +42,7 @@ const D8 = ({
           y2="8.2"
           gradientTransform="matrix(-20.6, 37.2, -37.2, -20.6, 102, 684.8)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_2`}
@@ -51,7 +53,7 @@ const D8 = ({
           y2="-15"
           gradientTransform="matrix(27, -22, 22, 27, 23, 783)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_3`}
@@ -62,7 +64,7 @@ const D8 = ({
           y2="6.3"
           gradientTransform="matrix(-77, -48, 48, -77, 143, 785)"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
       </defs>
       <g id="dice" transform="translate(2.177, 3)">

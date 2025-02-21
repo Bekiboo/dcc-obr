@@ -5,10 +5,12 @@ const D6 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <>
@@ -128,7 +130,7 @@ const D6 = ({
             x2="100"
             y2="80"
           >
-            <Stop color={color} />
+            {Stop({ color: color, saturation: saturation })}
           </linearGradient>
           <linearGradient
             id={`${randId}_1`}
@@ -138,7 +140,7 @@ const D6 = ({
             x2="48"
             y2="120"
           >
-            <Stop color={color} />
+            {Stop({ color: color, saturation: saturation })}
           </linearGradient>
           <linearGradient
             id={`${randId}_2`}
@@ -148,7 +150,7 @@ const D6 = ({
             x2="80"
             y2="65"
           >
-            <Stop color={color} />
+            {Stop({ color: color, saturation: saturation })}
           </linearGradient>
         </defs>
       </svg>

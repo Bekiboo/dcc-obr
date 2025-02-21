@@ -1,8 +1,14 @@
-const Stop = ({ color }: { color: number }) => {
+const Stop = ({
+  color,
+  saturation = 100,
+}: {
+  color: number
+  saturation?: number
+}) => {
   return (
     <>
-      <stop offset="0" stopColor={`hsl(${color}, 100%, 30%)`} />
-      <stop offset="1" stopColor={`hsl(${color}, 100%, 50%)`} />
+      <stop offset="0" stopColor={`hsl(${color}, ${saturation}%, 30%)`} />
+      <stop offset="1" stopColor={`hsl(${color}, ${saturation}%, 50%)`} />
     </>
   )
 }

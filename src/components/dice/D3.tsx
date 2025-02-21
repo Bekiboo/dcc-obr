@@ -5,10 +5,12 @@ const D3 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <>
@@ -84,10 +86,19 @@ const D3 = ({
             y2="130"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0.03" stopColor={`hsl(${color}, 100%, 30%)`} />
-            <stop offset="0.18" stopColor={`hsl(${color}, 100%, 50%)`} />
-            <stop offset="0.47" stopColor={`hsl(${color}, 100%, 30%)`} />
-            <stop offset=".8" stopColor={`hsl(${color}, 100%, 40%)`} />
+            <stop offset="0" stopColor={`hsl(${color}, ${saturation}%, 30%)`} />
+            <stop
+              offset="0.18"
+              stopColor={`hsl(${color}, ${saturation}%, 50%)`}
+            />
+            <stop
+              offset="0.57"
+              stopColor={`hsl(${color}, ${saturation}%, 30%)`}
+            />
+            <stop
+              offset=".8"
+              stopColor={`hsl(${color}, ${saturation}%, 40%)`}
+            />
           </linearGradient>
           <linearGradient
             id={`${randId}_1`}
@@ -97,7 +108,7 @@ const D3 = ({
             y2="73"
             gradientUnits="userSpaceOnUse"
           >
-            <Stop color={color} />
+            {Stop({ color: color, saturation: saturation })}
           </linearGradient>
           <linearGradient
             id={`${randId}_2`}
@@ -107,7 +118,7 @@ const D3 = ({
             y2="143"
             gradientUnits="userSpaceOnUse"
           >
-            <Stop color={color} />
+            {Stop({ color: color, saturation: saturation })}
           </linearGradient>
         </defs>
       </svg>

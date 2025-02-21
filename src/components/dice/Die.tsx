@@ -13,49 +13,198 @@ import D24 from './D24'
 import D30 from './D30'
 import D100 from './D100'
 
+// function to extract hue from hex color
+const hexToHue = (hex: string) => {
+  console.log(hex)
+  const r = parseInt(hex.substring(1, 3), 16)
+  const g = parseInt(hex.substring(3, 5), 16)
+  const b = parseInt(hex.substring(5, 7), 16)
+
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+
+  if (max === min) {
+    // Grayscale case: no hue
+    return 0
+  }
+
+  let hue = 0
+
+  if (max === r) {
+    hue = (g - b) / (max - min)
+  } else if (max === g) {
+    hue = 2 + (b - r) / (max - min)
+  } else {
+    hue = 4 + (r - g) / (max - min)
+  }
+
+  hue *= 60
+
+  if (hue < 0) {
+    hue += 360
+  }
+
+  return hue
+}
+
+// function to extract saturation from hex color
+const hexToSaturation = (hex: string) => {
+  const r = parseInt(hex.substring(1, 3), 16)
+  const g = parseInt(hex.substring(3, 5), 16)
+  const b = parseInt(hex.substring(5, 7), 16)
+
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+
+  if (max === 0) {
+    return 0
+  }
+
+  const saturation = 1 - min / max
+  return Math.round(saturation * 100)
+}
+
 const Die = ({
   type,
   size,
   result,
-  color,
+  hex,
 }: {
   type: string
   size: number | string
   result: number
-  color: number
+  hex: string
 }) => {
   const randId = Math.random().toString(36).substring(7)
 
   const renderDie = () => {
     switch (type) {
       case 'D3':
-        return <D3 result={result} color={color} randId={randId} />
+        return (
+          <D3
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D4':
-        return <D4 result={result} color={color} randId={randId} />
+        return (
+          <D4
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D5':
-        return <D5 result={result} color={color} randId={randId} />
+        return (
+          <D5
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D6':
-        return <D6 result={result} color={color} randId={randId} />
+        return (
+          <D6
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D7':
-        return <D7 result={result} color={color} randId={randId} />
+        return (
+          <D7
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D8':
-        return <D8 result={result} color={color} randId={randId} />
+        return (
+          <D8
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D10':
-        return <D10 result={result} color={color} randId={randId} />
+        return (
+          <D10
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D12':
-        return <D12 result={result} color={color} randId={randId} />
+        return (
+          <D12
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D14':
-        return <D14 result={result} color={color} randId={randId} />
+        return (
+          <D14
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D16':
-        return <D16 result={result} color={color} randId={randId} />
+        return (
+          <D16
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D20':
-        return <D20 result={result} color={color} randId={randId} />
+        return (
+          <D20
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D24':
-        return <D24 result={result} color={color} randId={randId} />
+        return (
+          <D24
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D30':
-        return <D30 result={result} color={color} randId={randId} />
+        return (
+          <D30
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       case 'D100':
-        return <D100 result={result} color={color} randId={randId} />
+        return (
+          <D100
+            result={result}
+            color={hexToHue(hex)}
+            saturation={hexToSaturation(hex)}
+            randId={randId}
+          />
+        )
       default:
         return null
     }

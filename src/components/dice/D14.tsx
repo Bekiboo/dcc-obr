@@ -5,10 +5,12 @@ const D14 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <svg
@@ -27,7 +29,7 @@ const D14 = ({
           y2="91.7"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_1`}
@@ -37,7 +39,7 @@ const D14 = ({
           y2="31.5"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_2`}
@@ -47,7 +49,7 @@ const D14 = ({
           y2="178"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_3`}
@@ -57,7 +59,7 @@ const D14 = ({
           y2="108.5"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_4`}
@@ -67,7 +69,7 @@ const D14 = ({
           y2="-5"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_5`}
@@ -77,7 +79,7 @@ const D14 = ({
           y2="36"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_6`}
@@ -87,7 +89,7 @@ const D14 = ({
           y2="67"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
       </defs>
       <path

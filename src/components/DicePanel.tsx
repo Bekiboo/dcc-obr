@@ -98,7 +98,7 @@ const DicePanel = ({
               onMouseUp={() => handleMouseUp(type)}
             >
               <div className="absolute w-full h-full " />
-              <Die result={sides} color={40} type={type} size={'3rem'} />
+              <Die result={sides} hex={'#19130f'} type={type} size={'3rem'} />
             </button>
             {selectedDice[type] > 0 && (
               <button

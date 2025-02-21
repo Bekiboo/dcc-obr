@@ -5,10 +5,12 @@ const D16 = ({
   result,
   color,
   randId,
+  saturation,
 }: {
   result: number
   color: number
   randId: string
+  saturation: number
 }) => {
   return (
     <svg
@@ -27,7 +29,7 @@ const D16 = ({
           y2="54.2532"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_1`}
@@ -37,7 +39,7 @@ const D16 = ({
           y2="15.5349"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_2`}
@@ -47,7 +49,7 @@ const D16 = ({
           y2="60.6899"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_3`}
@@ -57,7 +59,7 @@ const D16 = ({
           y2="12.9941"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_4`}
@@ -67,7 +69,7 @@ const D16 = ({
           y2="1.08552"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_5`}
@@ -77,7 +79,7 @@ const D16 = ({
           y2="38.3031"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_6`}
@@ -87,7 +89,7 @@ const D16 = ({
           y2="80.2471"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
         <linearGradient
           id={`${randId}_7`}
@@ -97,7 +99,7 @@ const D16 = ({
           y2="42.4495"
           gradientUnits="userSpaceOnUse"
         >
-          {Stop({ color: color })}
+          {Stop({ color: color, saturation: saturation })}
         </linearGradient>
       </defs>
 
