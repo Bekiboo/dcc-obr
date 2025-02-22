@@ -23,7 +23,7 @@ export type DieType =
 
 function App() {
   const [ready, setReady] = useState(false)
-  const [sceneReady, setSceneReady] = useState(false)
+  // const [sceneReady, setSceneReady] = useState(false)
   const [playerName, setPlayerName] = useState<string | null>(null)
   const [playerColor, setPlayerColor] = useState<string | null>(null)
   const [party, setParty] = useState<Player[]>([])
@@ -49,7 +49,7 @@ function App() {
       OBR.party.getPlayers().then(setParty)
       OBR.party.onChange(setParty)
 
-      return OBR.scene.onReadyChange(setSceneReady)
+      // return OBR.scene.onReadyChange(setSceneReady)
     }
   }, [ready])
 
