@@ -29,12 +29,9 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ name, color }) => {
   }, [name])
 
   return (
-    <div
-      className="w-full p-4 mb-2 bg-stone-700 rounded-xl"
-      style={{ borderColor: color }}
-    >
-      <h2 className="text-xl font-bold" style={{ color }}>
-        {name} - {color}
+    <div className="w-full" style={{ borderColor: color }}>
+      <h2 className="" style={{ color }}>
+        {name}
       </h2>
       <div className="flex items-center gap-2">
         {dice.map((die) => (

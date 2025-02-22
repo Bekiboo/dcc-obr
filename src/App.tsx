@@ -75,9 +75,7 @@ function App() {
 
   return (
     <main className="h-screen grid grid-rows-[1fr,6rem] bg-stone-800 overflow-hidden text-white">
-      <div className="w-full col-start-1 p-4">
-        <h1 className="mb-4 text-2xl font-bold">Party</h1>
-
+      <div className="w-full p-4">
         {playerName && playerColor && (
           <PlayerCard name={`${playerName}`} color={playerColor} />
         )}
@@ -87,10 +85,7 @@ function App() {
         ))}
       </div>
 
-      <DicePanel
-        className="w-screen col-span-2 col-start-1"
-        rollDice={rollDice}
-      />
+      <DicePanel className="w-screen col-start-1" rollDice={rollDice} />
 
       <DiceRollSound setPlayDiceRoll={setPlayDiceRoll} />
     </main>
