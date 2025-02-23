@@ -86,18 +86,21 @@ const D3 = ({
             y2="130"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0" stopColor={`hsl(${color}, ${saturation}%, 30%)`} />
+            <stop
+              offset="0"
+              stopColor={`hsl(${color}, ${saturation * 1.2}%, 40%)`}
+            />
             <stop
               offset="0.18"
-              stopColor={`hsl(${color}, ${saturation}%, 50%)`}
+              stopColor={`hsl(${color}, ${saturation * 1.2}%, 60%)`}
             />
             <stop
               offset="0.57"
-              stopColor={`hsl(${color}, ${saturation}%, 30%)`}
+              stopColor={`hsl(${color}, ${saturation * 1.2}%, 30%)`}
             />
             <stop
               offset=".8"
-              stopColor={`hsl(${color}, ${saturation}%, 40%)`}
+              stopColor={`hsl(${color}, ${saturation * 1.2}%, 40%)`}
             />
           </linearGradient>
           <linearGradient

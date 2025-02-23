@@ -7,8 +7,8 @@ const Stop = ({
 }) => {
   return (
     <>
-      <stop offset="0" stopColor={`hsl(${color}, ${saturation}%, 30%)`} />
-      <stop offset="1" stopColor={`hsl(${color}, ${saturation}%, 50%)`} />
+      <stop offset="0" stopColor={`hsl(${color}, ${saturation * 1.2}%, 40%)`} />
+      <stop offset="1" stopColor={`hsl(${color}, ${saturation * 1.2}%, 60%)`} />
     </>
   )
 }
