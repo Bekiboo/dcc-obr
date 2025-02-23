@@ -85,7 +85,12 @@ function App() {
     <main className="h-screen grid grid-rows-[1fr,6rem] bg-stone-800 overflow-hidden text-white">
       <div className="w-full p-4">
         {playerName && playerColor && (
-          <PlayerCard name={`${playerName}`} color={playerColor} />
+          <PlayerCard
+            name={`${playerName}`}
+            color={playerColor}
+            isPlayer={true}
+            rollDice={rollDice}
+          />
         )}
 
         {party.map((player) => (

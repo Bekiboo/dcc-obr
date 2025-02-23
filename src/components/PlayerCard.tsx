@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import OBR from '@owlbear-rodeo/sdk'
 import { motion } from 'motion/react'
 import Die from './dice/Die'
+import { Button } from './ui/button'
 
 export type DieRoll = {
   id: string
@@ -12,10 +13,23 @@ export type DieRoll = {
 type PlayerCardProps = {
   name: string
   color: string
+  isPlayer?: boolean
+  rollDice?: ([side]: number[]) => void
 }
 
-const PlayerCard: FC<PlayerCardProps> = ({ name, color }) => {
+const PlayerCard: FC<PlayerCardProps> = ({
+  name,
+  color,
+  isPlayer = false,
+  rollDice,
+}) => {
   const [dice, setDice] = useState<DieRoll[]>([])
+
+  const rerollDice = () => {
+    if (rollDice) {
+      rollDice(dice.map((die) => parseInt(die.type.slice(1))))
+    }
+  }
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,10 +45,20 @@ const PlayerCard: FC<PlayerCardProps> = ({ name, color }) => {
 
   return (
     <div className="w-full" style={{ borderColor: color }}>
-      <h2 className="" style={{ color }}>
-        {name}
-      </h2>
-      <div className="flex items-center gap-2">
+      {isPlayer ? (
+        <Button
+          className="w-full h-8 text-white bg-stone-800"
+          onClick={() => rerollDice()}
+          disabled={dice.length === 0}
+        >
+          Reroll
+        </Button>
+      ) : (
+        <h2 className="" style={{ color }}>
+          {name}
+        </h2>
+      )}
+      <div className="flex items-center h-16 gap-2">
         {dice.map((die) => (
           <motion.div
             key={die.id}
