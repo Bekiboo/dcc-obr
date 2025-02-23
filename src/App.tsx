@@ -49,6 +49,7 @@ function App() {
       OBR.party.getPlayers().then(setParty)
       OBR.party.onChange(setParty)
 
+      // @ts-expect-error - SDK type mismatch
       OBR.broadcast.onMessage('funky_dice_roller', ({ data: { dice } }) => {
         console.log(dice)
         if (playDiceRoll) {

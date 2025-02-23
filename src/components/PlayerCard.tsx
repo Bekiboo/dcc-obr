@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import OBR from '@owlbear-rodeo/sdk'
 import { motion } from 'motion/react'
 import Die from './dice/Die'
@@ -14,23 +14,18 @@ type PlayerCardProps = {
   color: string
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ name, color }) => {
+const PlayerCard: FC<PlayerCardProps> = ({ name, color }) => {
   const [dice, setDice] = useState<DieRoll[]>([])
 
   useEffect(() => {
-    const handleDiceRoll = ({
-      player,
-      dice,
-    }: {
-      player: string
-      dice: DieRoll[]
-    }) => {
-      if (player === name) {
-        setDice(dice)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleDiceRoll = ({ data }: { data: any }) => {
+      console.log(data.player)
+      if (data.player === name) {
+        setDice(data.dice)
       }
     }
 
-    // @ts-expect-error - SDK is missing types
     OBR.broadcast.onMessage('funky_dice_roller', handleDiceRoll)
   }, [name])
 
@@ -66,17 +61,6 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ name, color }) => {
           </motion.div>
         ))}
       </div>
-      {/* <div className="mt-2">
-        {dice.length > 0 ? (
-          dice.map((die) => (
-            <p key={die.id}>
-              {die.type}: {die.result}
-            </p>
-          ))
-        ) : (
-          <p>No dice rolled yet.</p>
-        )}
-      </div> */}
     </div>
   )
 }
