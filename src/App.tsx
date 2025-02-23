@@ -49,9 +49,18 @@ function App() {
       OBR.party.getPlayers().then(setParty)
       OBR.party.onChange(setParty)
 
+      OBR.broadcast.onMessage('funky_dice_roller', ({ data: { dice } }) => {
+        console.log(dice)
+        if (playDiceRoll) {
+          for (let i = 0; i < dice.length; i++) {
+            playDiceRoll()
+          }
+        }
+      })
+
       // return OBR.scene.onReadyChange(setSceneReady)
     }
-  }, [ready])
+  }, [playDiceRoll, ready])
 
   // Roll Dice and Broadcast
   const rollDice = (dice: number[]) => {
@@ -69,8 +78,6 @@ function App() {
       },
       { destination: 'ALL' }
     )
-
-    playDiceRoll?.()
   }
 
   return (

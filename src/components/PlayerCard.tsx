@@ -18,13 +18,19 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ name, color }) => {
   const [dice, setDice] = useState<DieRoll[]>([])
 
   useEffect(() => {
-    const handleDiceRoll = ({ data }: { data: any }) => {
-      console.log(data.player)
-      if (data.player === name) {
-        setDice(data.dice)
+    const handleDiceRoll = ({
+      player,
+      dice,
+    }: {
+      player: string
+      dice: DieRoll[]
+    }) => {
+      if (player === name) {
+        setDice(dice)
       }
     }
 
+    // @ts-expect-error - SDK is missing types
     OBR.broadcast.onMessage('funky_dice_roller', handleDiceRoll)
   }, [name])
 
