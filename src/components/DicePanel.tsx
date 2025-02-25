@@ -119,8 +119,8 @@ const DicePanel = ({
         }
         onClick={() => (rerollable ? rerollDice() : rollAllDice())}
         className={
-          'w-2 h-full px-3 bg-stone-600' +
-          (rerollable ? ' outline outline-white' : '')
+          'w-2 h-full px-3 bg-stone-700 outline hover:bg-stone-600 active:bg-stone-500' +
+          (rerollable ? ' outline-stone-400' : ' outline-stone-200')
         }
       >
         <span className="-rotate-90">{rerollable ? 'Reroll' : 'Roll'}</span>
