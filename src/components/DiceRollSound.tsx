@@ -8,30 +8,51 @@ const DiceRollSound = ({
 }) => {
   const audioContextRef = useRef<AudioContext | null>(null)
   const gainNodeRef = useRef<GainNode | null>(null)
+  const audioBufferRef = useRef<AudioBuffer | null>(null)
   const [volume, setVolume] = useState(0.25)
 
-  // Initialize the audio context and gain node
+  // Initialize AudioContext and GainNode
   useEffect(() => {
-    if (!audioContextRef.current) {
-      const context = new AudioContext()
-      const gain = context.createGain()
-      gain.connect(context.destination)
-      audioContextRef.current = context
-      gainNodeRef.current = gain
+    const initAudio = async () => {
+      if (!audioContextRef.current) {
+        const context = new AudioContext()
+        const gain = context.createGain()
+        gain.connect(context.destination)
+
+        audioContextRef.current = context
+        gainNodeRef.current = gain
+
+        // Preload audio buffer
+        const response = await fetch('/dieRolls.webm')
+        const arrayBuffer = await response.arrayBuffer()
+        audioBufferRef.current = await context.decodeAudioData(arrayBuffer)
+      }
+    }
+
+    initAudio()
+
+    // Cleanup
+    return () => {
+      audioContextRef.current?.close()
     }
   }, [])
 
-  const playDiceRoll = useCallback(async () => {
-    if (!audioContextRef.current || !gainNodeRef.current) return
-
-    const response = await fetch('/dieRolls.webm')
-    const arrayBuffer = await response.arrayBuffer()
-    const audioBuffer = await audioContextRef.current.decodeAudioData(
-      arrayBuffer
+  // Play Dice Roll Sound
+  const playDiceRoll = useCallback(() => {
+    if (
+      !audioContextRef.current ||
+      !gainNodeRef.current ||
+      !audioBufferRef.current
     )
+      return
+
+    // Ensure context is running
+    if (audioContextRef.current.state === 'suspended') {
+      audioContextRef.current.resume()
+    }
 
     const source = audioContextRef.current.createBufferSource()
-    source.buffer = audioBuffer
+    source.buffer = audioBufferRef.current
     source.connect(gainNodeRef.current)
 
     const segments = [
@@ -69,16 +90,17 @@ const DiceRollSound = ({
 
     const segment = segments[Math.floor(Math.random() * segments.length)]
     const segmentDuration = segment[1] - segment[0]
+
     source.playbackRate.value = 0.8
     source.start(0, segment[0], segmentDuration)
   }, [])
 
-  // Bind the playDiceRoll function to the setPlayDiceRoll function
+  // Expose playDiceRoll function
   useEffect(() => {
     setPlayDiceRoll(() => playDiceRoll)
   }, [playDiceRoll, setPlayDiceRoll])
 
-  //   Update the volume of the gain node when the volume state changes
+  // Update volume
   useEffect(() => {
     if (gainNodeRef.current) {
       gainNodeRef.current.gain.value = volume
@@ -95,7 +117,6 @@ const DiceRollSound = ({
         onValueChange={(e) => setVolume(e[0])}
         className="w-32 h-4"
       />
-      {/* <span>Volume: {Math.round(volume * 100)}%</span> */}
     </div>
   )
 }
