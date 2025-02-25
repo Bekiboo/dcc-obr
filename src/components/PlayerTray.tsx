@@ -73,6 +73,7 @@ const PlayerTray: FC<PlayerTrayProps> = ({ name, color }) => {
       </div>
       {/* total */}
       <motion.div
+        key={Math.random()}
         initial={{ opacity: 0, y: -20, scale: 0.5 }}
         animate={{
           opacity: 1,
@@ -87,10 +88,16 @@ const PlayerTray: FC<PlayerTrayProps> = ({ name, color }) => {
         }}
         className={'max-w-16 ml-2 relative' + (dice.length > 7 ? ' w-8' : '')}
       >
-        <div className="flex items-center justify-center text-center bg-stone-800 w-7 h-7 outline outline-stone-300">
-          <h2 className="">{dice.reduce((acc, die) => acc + die.result, 0)}</h2>
-        </div>
-        <div className="absolute top-0 rotate-45 w-7 h-7 outline outline-stone-500 -z-10"></div>
+        {dice.length > 0 ? (
+          <div className="flex items-center justify-center text-center bg-stone-800 w-7 h-7 outline outline-stone-300">
+            <h2 className="">
+              {dice.reduce((acc, die) => acc + die.result, 0)}
+            </h2>
+            <div className="absolute top-0 rotate-45 w-7 h-7 outline outline-stone-500 -z-10"></div>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </motion.div>
     </div>
   )
