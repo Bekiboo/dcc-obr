@@ -9,7 +9,7 @@ const DiceRollSound = ({
   const audioContextRef = useRef<AudioContext | null>(null)
   const gainNodeRef = useRef<GainNode | null>(null)
   const audioBufferRef = useRef<AudioBuffer | null>(null)
-  const [volume, setVolume] = useState(0.25)
+  const [volume, setVolume] = useState(0.15)
 
   // Initialize AudioContext and GainNode
   useEffect(() => {
