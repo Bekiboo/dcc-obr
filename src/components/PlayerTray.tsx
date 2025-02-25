@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react'
 import OBR from '@owlbear-rodeo/sdk'
 import { motion } from 'motion/react'
 import Die from './dice/Die'
-import { Button } from './ui/button'
 
 export type DieRoll = {
   id: string
@@ -14,22 +13,10 @@ type PlayerTrayProps = {
   name: string
   color: string
   isPlayer?: boolean
-  rollDice?: ([side]: number[]) => void
 }
 
-const PlayerTray: FC<PlayerTrayProps> = ({
-  name,
-  color,
-  isPlayer = false,
-  rollDice,
-}) => {
+const PlayerTray: FC<PlayerTrayProps> = ({ name, color }) => {
   const [dice, setDice] = useState<DieRoll[]>([])
-
-  const rerollDice = () => {
-    if (rollDice) {
-      rollDice(dice.map((die) => parseInt(die.type.slice(1))))
-    }
-  }
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,19 +35,9 @@ const PlayerTray: FC<PlayerTrayProps> = ({
       style={{ borderColor: color }}
     >
       <div className="flex items-center justify-center w-6 h-16">
-        {isPlayer ? (
-          <Button
-            className="w-16 h-6 text-white -rotate-90 bg-stone-700"
-            onClick={() => rerollDice()}
-            disabled={dice.length === 0}
-          >
-            Reroll
-          </Button>
-        ) : (
-          <h2 className="-rotate-90 " style={{ color }}>
-            {name.slice(0, 8)}
-          </h2>
-        )}
+        <h2 className="-rotate-90 " style={{ color }}>
+          {name.slice(0, 8)}
+        </h2>
       </div>
       <div
         className={

@@ -84,12 +84,7 @@ function App() {
     <main className="h-screen grid grid-rows-[1fr,6rem] bg-stone-800 overflow-hidden text-white">
       <div className="flex flex-col w-full gap-2 p-4">
         {playerName && playerColor && (
-          <PlayerTray
-            name={`${playerName}`}
-            color={playerColor}
-            isPlayer={true}
-            rollDice={rollDice}
-          />
+          <PlayerTray name={`${playerName}`} color={playerColor} />
         )}
 
         {party.map((player) => (

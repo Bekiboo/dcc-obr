@@ -30,6 +30,8 @@ const DicePanel = ({
   const [selectedDice, setSelectedDice] = useState<{ [key: string]: number }>(
     {}
   )
+  const [lastRoll, setLastRoll] = useState<number[]>([])
+  const [rerollable, setRerollable] = useState(false)
 
   const selectDie = (type: string) => {
     const totalSelected = Object.values(selectedDice).reduce(
@@ -47,21 +49,28 @@ const DicePanel = ({
   }
 
   const rollAllDice = () => {
-    rollDice(
-      Object.entries(selectedDice).reduce<number[]>((acc, [type, count]) => {
+    const rolledDice = Object.entries(selectedDice).reduce<number[]>(
+      (acc, [type, count]) => {
         return [
           ...acc,
           ...Array.from({ length: count }).map(
             () => dice.find((die) => die.type === type)?.sides || 0
           ),
         ]
-      }, [])
+      },
+      []
     )
+    rollDice(rolledDice)
     setSelectedDice({})
+    setRerollable(true)
+    setLastRoll(rolledDice)
   }
 
   const rollOneDie = (type: string) => {
-    rollDice([dice.find((die) => die.type === type)?.sides || 0])
+    const rolledDie = [dice.find((die) => die.type === type)?.sides || 0]
+    rollDice(rolledDie)
+    setRerollable(true)
+    setLastRoll(rolledDie)
   }
 
   // start timer one mouse down, clear timer on mouse up
@@ -81,19 +90,29 @@ const DicePanel = ({
   const handleMouseUp = (type: string) => {
     if (!hasRolled && timer) {
       selectDie(type) // Only select if long press wasn't completed
+      setRerollable(false)
     }
     clearTimeout(timer!)
     timer = null
   }
 
+  const rerollDice = () => {
+    if (rollDice) {
+      rollDice(lastRoll)
+    }
+  }
+
   return (
     <div className={cn('flex gap-1', className)}>
       <Button
-        disabled={Object.values(selectedDice).every((value) => value === 0)}
-        onClick={() => rollAllDice()}
+        disabled={
+          Object.values(selectedDice).every((value) => value === 0) &&
+          !rerollable
+        }
+        onClick={() => (rerollable ? rerollDice() : rollAllDice())}
         className="w-2 h-full px-3 dark text"
       >
-        <span className="-rotate-90">Roll</span>
+        <span className="-rotate-90">{rerollable ? 'Reroll' : 'Roll'}</span>
       </Button>
       <div className="flex flex-wrap gap-1">
         {dice.map(({ type, sides }, index) => (
