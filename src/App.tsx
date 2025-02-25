@@ -82,7 +82,7 @@ function App() {
 
   return (
     <main className="h-screen grid grid-rows-[1fr,6rem] bg-stone-800 overflow-hidden text-white">
-      <div className="flex flex-col w-full gap-2 p-4">
+      <div className="flex flex-col w-full gap-2 p-4 overflow-y-auto no-scrollbar">
         {playerName && playerColor && (
           <PlayerTray name={`${playerName}`} color={playerColor} />
         )}
