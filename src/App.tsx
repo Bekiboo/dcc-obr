@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import OBR, { Player } from '@owlbear-rodeo/sdk'
 import DicePanel from './components/DicePanel'
-import PlayerCard from './components/PlayerCard'
+import PlayerTray from './components/PlayerTray'
 import DiceRollSound from './components/DiceRollSound'
 
 export type DieType =
@@ -51,7 +51,6 @@ function App() {
 
       // @ts-expect-error - SDK type mismatch
       OBR.broadcast.onMessage('funky_dice_roller', ({ data: { dice } }) => {
-        console.log(dice)
         if (playDiceRoll) {
           for (let i = 0; i < dice.length; i++) {
             playDiceRoll()
@@ -85,7 +84,7 @@ function App() {
     <main className="h-screen grid grid-rows-[1fr,6rem] bg-stone-800 overflow-hidden text-white">
       <div className="flex flex-col w-full gap-2 p-4">
         {playerName && playerColor && (
-          <PlayerCard
+          <PlayerTray
             name={`${playerName}`}
             color={playerColor}
             isPlayer={true}
@@ -94,7 +93,7 @@ function App() {
         )}
 
         {party.map((player) => (
-          <PlayerCard key={player.id} name={player.name} color={player.color} />
+          <PlayerTray key={player.id} name={player.name} color={player.color} />
         ))}
       </div>
 

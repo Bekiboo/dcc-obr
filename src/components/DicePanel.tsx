@@ -37,7 +37,7 @@ const DicePanel = ({
       0
     )
 
-    if (totalSelected >= 10) return
+    if (totalSelected >= 16) return
 
     setSelectedDice((prev) => ({ ...prev, [type]: (prev[type] || 0) + 1 }))
   }
