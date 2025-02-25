@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cn } from '../lib/utils'
 
 import { Button } from './ui/button'
@@ -62,14 +62,14 @@ const DicePanel = ({
     )
     rollDice(rolledDice)
     setSelectedDice({})
-    setRerollable(true)
+    // setRerollable(true)
     setLastRoll(rolledDice)
   }
 
   const rollOneDie = (type: string) => {
     const rolledDie = [dice.find((die) => die.type === type)?.sides || 0]
     rollDice(rolledDie)
-    setRerollable(true)
+    // setRerollable(true)
     setLastRoll(rolledDie)
   }
 
@@ -84,13 +84,13 @@ const DicePanel = ({
       rollOneDie(type)
       hasRolled = true
       timer = null
-    }, 300)
+    }, 500)
   }
 
   const handleMouseUp = (type: string) => {
     if (!hasRolled && timer) {
       selectDie(type) // Only select if long press wasn't completed
-      setRerollable(false)
+      // setRerollable(false)
     }
     clearTimeout(timer!)
     timer = null
@@ -102,19 +102,30 @@ const DicePanel = ({
     }
   }
 
+  // Update rerollable state
+  useEffect(() => {
+    setRerollable(
+      lastRoll.length > 0 &&
+        Object.values(selectedDice).every((value) => value === 0)
+    )
+  }, [selectedDice, lastRoll])
+
   return (
-    <div className={cn('flex gap-1', className)}>
+    <div className={cn('flex gap-1 px-1', className)}>
       <Button
         disabled={
           Object.values(selectedDice).every((value) => value === 0) &&
           !rerollable
         }
         onClick={() => (rerollable ? rerollDice() : rollAllDice())}
-        className="w-2 h-full px-3 dark text"
+        className={
+          'w-2 h-full px-3 bg-stone-600' +
+          (rerollable ? ' outline outline-white' : '')
+        }
       >
         <span className="-rotate-90">{rerollable ? 'Reroll' : 'Roll'}</span>
       </Button>
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap justify-end gap-1">
         {dice.map(({ type, sides }, index) => (
           <div key={index} className="relative">
             <button
