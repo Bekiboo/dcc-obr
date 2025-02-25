@@ -3,13 +3,17 @@ import { cn } from '../lib/utils'
 
 import { Button } from './ui/button'
 import Die from './dice/Die'
+import { Slider } from './ui/slider'
+import IconSpeaker from './IconSpeaker'
 
 const DicePanel = ({
   className,
   rollDice,
+  setVolume,
 }: {
   className?: string
   rollDice: ([side]: number[]) => void
+  setVolume: (volume: number) => void
 }) => {
   const dice = [
     { type: 'D3', sides: 3 },
@@ -112,19 +116,35 @@ const DicePanel = ({
 
   return (
     <div className={cn('flex gap-1 px-1', className)}>
-      <Button
-        disabled={
-          Object.values(selectedDice).every((value) => value === 0) &&
-          !rerollable
-        }
-        onClick={() => (rerollable ? rerollDice() : rollAllDice())}
-        className={
-          'w-2 h-full px-3 bg-stone-700 outline hover:bg-stone-600 active:bg-stone-500' +
-          (rerollable ? ' outline-stone-400' : ' outline-stone-200')
-        }
-      >
-        <span className="-rotate-90">{rerollable ? 'Reroll' : 'Roll'}</span>
-      </Button>
+      <div className="flex flex-col gap-2 w-7">
+        <Button
+          disabled={
+            Object.values(selectedDice).every((value) => value === 0) &&
+            !rerollable
+          }
+          onClick={() => (rerollable ? rerollDice() : rollAllDice())}
+          className={
+            'w-2 h-full px-3 bg-stone-700 outline hover:bg-stone-600 active:bg-stone-500' +
+            (rerollable ? ' outline-stone-400' : ' outline-stone-200')
+          }
+        >
+          <span className="-rotate-90">{rerollable ? 'Reroll' : 'Roll'}</span>
+        </Button>
+        <div className="relative w-full h-8 mb-2 group">
+          <div className="absolute">
+            <IconSpeaker />
+          </div>
+
+          <Slider
+            min={0}
+            max={1}
+            step={0.1}
+            defaultValue={[0.15]}
+            onValueChange={(e) => setVolume(e[0])}
+            className="z-10 hidden w-32 h-4 rounded-full outline outline-white group-hover:block bg-stone-950"
+          />
+        </div>
+      </div>
       <div className="flex flex-wrap justify-end gap-1">
         {dice.map(({ type, sides }, index) => (
           <div key={index} className="relative">

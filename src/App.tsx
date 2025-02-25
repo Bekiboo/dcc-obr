@@ -27,8 +27,8 @@ function App() {
   const [playerName, setPlayerName] = useState<string | null>(null)
   const [playerColor, setPlayerColor] = useState<string | null>(null)
   const [party, setParty] = useState<Player[]>([])
-
   const [playDiceRoll, setPlayDiceRoll] = useState<(() => void) | null>(null)
+  const [volume, setVolume] = useState(0.15)
 
   // Initialize Owlbear Rodeo SDK
   useEffect(() => {
@@ -81,7 +81,7 @@ function App() {
   }
 
   return (
-    <main className="h-screen grid grid-rows-[1fr,6rem] bg-stone-800 overflow-hidden text-white">
+    <main className="h-screen grid grid-rows-[1fr,7rem] bg-stone-800 overflow-hidden text-white">
       <div className="flex flex-col w-full gap-2 p-4 overflow-y-auto no-scrollbar">
         {playerName && playerColor && (
           <PlayerTray name={`${playerName}`} color={playerColor} />
@@ -92,9 +92,13 @@ function App() {
         ))}
       </div>
 
-      <DicePanel className="w-screen col-start-1" rollDice={rollDice} />
+      <DicePanel
+        className="w-screen"
+        rollDice={rollDice}
+        setVolume={setVolume}
+      />
 
-      <DiceRollSound setPlayDiceRoll={setPlayDiceRoll} />
+      <DiceRollSound setPlayDiceRoll={setPlayDiceRoll} volume={volume} />
     </main>
   )
 }

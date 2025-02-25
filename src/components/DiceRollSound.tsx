@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { Slider } from './ui/slider'
+import { useCallback, useEffect, useRef } from 'react'
+// import { Slider } from './ui/slider'
 
 const DiceRollSound = ({
   setPlayDiceRoll,
+  volume,
 }: {
   setPlayDiceRoll: (fn: () => void) => void
+  volume: number
 }) => {
   const audioContextRef = useRef<AudioContext | null>(null)
   const gainNodeRef = useRef<GainNode | null>(null)
   const audioBufferRef = useRef<AudioBuffer | null>(null)
-  const [volume, setVolume] = useState(0.15)
 
   // Initialize AudioContext and GainNode
   useEffect(() => {
@@ -107,18 +108,7 @@ const DiceRollSound = ({
     }
   }, [volume])
 
-  return (
-    <div>
-      <Slider
-        min={0}
-        max={1}
-        step={0.1}
-        defaultValue={[volume]}
-        onValueChange={(e) => setVolume(e[0])}
-        className="w-32 h-4"
-      />
-    </div>
-  )
+  return <div></div>
 }
 
 export default DiceRollSound
