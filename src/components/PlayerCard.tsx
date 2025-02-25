@@ -44,20 +44,22 @@ const PlayerCard: FC<PlayerCardProps> = ({
   }, [name])
 
   return (
-    <div className="w-full" style={{ borderColor: color }}>
-      {isPlayer ? (
-        <Button
-          className="w-full h-8 text-white bg-stone-800"
-          onClick={() => rerollDice()}
-          disabled={dice.length === 0}
-        >
-          Reroll
-        </Button>
-      ) : (
-        <h2 className="" style={{ color }}>
-          {name}
-        </h2>
-      )}
+    <div className="flex items-center w-full" style={{ borderColor: color }}>
+      <div className="flex items-center justify-center w-6 h-16">
+        {isPlayer ? (
+          <Button
+            className="w-16 h-6 text-white -rotate-90 bg-stone-700"
+            onClick={() => rerollDice()}
+            disabled={dice.length === 0}
+          >
+            Reroll
+          </Button>
+        ) : (
+          <h2 className="-rotate-90 " style={{ color }}>
+            {name.slice(0, 8)}
+          </h2>
+        )}
+      </div>
       <div className="flex items-center h-16 gap-2">
         {dice.map((die) => (
           <motion.div

@@ -82,12 +82,9 @@ const DicePanel = ({
       <Button
         disabled={Object.values(selectedDice).every((value) => value === 0)}
         onClick={() => rollAllDice()}
-        className="flex flex-col justify-center w-4 h-full dark"
+        className="w-2 h-full px-3 dark text"
       >
-        <span className="leading-3">R</span>
-        <span className="leading-3">o</span>
-        <span className="leading-3">l</span>
-        <span className="leading-3">l</span>
+        <span className="-rotate-90">Roll</span>
       </Button>
       <div className="flex flex-wrap gap-1">
         {dice.map(({ type, sides }, index) => (
@@ -102,7 +99,7 @@ const DicePanel = ({
             </button>
             {selectedDice[type] > 0 && (
               <button
-                className="absolute top-0 right-0 w-6 h-6 font-bold text-white bg-red-500 rounded-full"
+                className="absolute w-6 h-6 font-bold text-white bg-red-500 rounded-full -top-1.5 -right-1.5"
                 onClick={() => uneselectDie(type)}
               >
                 {selectedDice[type]}
