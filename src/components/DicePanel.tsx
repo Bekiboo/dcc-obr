@@ -66,15 +66,24 @@ const DicePanel = ({
 
   // start timer one mouse down, clear timer on mouse up
   // if timer is cleared before mouse up, roll dice
-  let timer: ReturnType<typeof setTimeout>
+  let timer: ReturnType<typeof setTimeout> | null = null
+  let hasRolled = false
+
   const handleMouseDown = (type: string) => {
-    timer = setTimeout(() => rollOneDie(type), 250)
+    hasRolled = false
+    timer = setTimeout(() => {
+      rollOneDie(type)
+      hasRolled = true
+      timer = null
+    }, 300)
   }
+
   const handleMouseUp = (type: string) => {
-    if (timer != undefined) {
-      selectDie(type)
+    if (!hasRolled && timer) {
+      selectDie(type) // Only select if long press wasn't completed
     }
-    clearTimeout(timer)
+    clearTimeout(timer!)
+    timer = null
   }
 
   return (
