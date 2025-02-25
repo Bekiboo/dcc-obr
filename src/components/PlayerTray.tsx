@@ -53,7 +53,7 @@ const PlayerTray: FC<PlayerTrayProps> = ({ name, color }) => {
               opacity: 1,
               y: 0,
               scale: 1,
-              rotate: 360 * Math.ceil(Math.random() * 4 + 1),
+              rotate: 360 * Math.ceil(Math.random() * 3 + 2),
             }}
             transition={{
               type: 'spring',
@@ -72,25 +72,26 @@ const PlayerTray: FC<PlayerTrayProps> = ({ name, color }) => {
         ))}
       </div>
       {/* total */}
-      <div className="flex items-center justify-center w-16 h-16">
-        <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.5 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotate: 360 * Math.ceil(Math.random() * 5),
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: Math.random() * 130 + 20,
-            damping: Math.random() * 10 + 5,
-          }}
-          className={'max-w-16' + (dice.length > 7 ? ' w-8' : '')}
-        >
-          <h2>{dice.reduce((acc, die) => acc + die.result, 0)}</h2>
-        </motion.div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: -20, scale: 0.5 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotate: 360 * Math.ceil(Math.random() * 2 + 3),
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: Math.random() * 130 + 20,
+          damping: Math.random() * 10 + 5,
+        }}
+        className={'max-w-16 ml-2 relative' + (dice.length > 7 ? ' w-8' : '')}
+      >
+        <div className="flex items-center justify-center text-center bg-stone-800 w-7 h-7 outline outline-stone-300">
+          <h2 className="">{dice.reduce((acc, die) => acc + die.result, 0)}</h2>
+        </div>
+        <div className="absolute top-0 rotate-45 w-7 h-7 outline outline-stone-500 -z-10"></div>
+      </motion.div>
     </div>
   )
 }
