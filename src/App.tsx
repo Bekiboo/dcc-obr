@@ -30,6 +30,7 @@ type SimplifiedPlayer = {
 const simplifyParty = (party: Player[]): SimplifiedPlayer[] =>
   party.map(({ id, name, color }) => ({ id, name, color }))
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const deepEqual = (a: any, b: any): boolean => {
   if (a === b) return true
   if (typeof a !== 'object' || a === null || b === null) return false
