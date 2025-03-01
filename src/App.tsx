@@ -21,6 +21,31 @@ export type DieType =
   | 'D30'
   | 'D100'
 
+type SimplifiedPlayer = {
+  id: string
+  name: string
+  color: string
+}
+
+const simplifyParty = (party: Player[]): SimplifiedPlayer[] =>
+  party.map(({ id, name, color }) => ({ id, name, color }))
+
+const deepEqual = (a: any, b: any): boolean => {
+  if (a === b) return true
+  if (typeof a !== 'object' || a === null || b === null) return false
+  if (Array.isArray(a) !== Array.isArray(b)) return false
+
+  const keysA = Object.keys(a)
+  const keysB = Object.keys(b)
+  if (keysA.length !== keysB.length) return false
+
+  for (const key of keysA) {
+    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false
+  }
+
+  return true
+}
+
 function App() {
   const [ready, setReady] = useState(false)
   // const [sceneReady, setSceneReady] = useState(false)
@@ -37,6 +62,7 @@ function App() {
 
   // Fetch player and party details
   useEffect(() => {
+    console.log(ready)
     if (ready) {
       OBR.player.getName().then(setPlayerName)
       OBR.player.getColor().then(setPlayerColor)
@@ -47,7 +73,15 @@ function App() {
       })
 
       OBR.party.getPlayers().then(setParty)
-      OBR.party.onChange(setParty)
+      OBR.party.onChange((newParty) => {
+        const simplifiedNewParty = simplifyParty(newParty)
+        setParty((prevParty) => {
+          const simplifiedPrevParty = simplifyParty(prevParty)
+          return deepEqual(simplifiedPrevParty, simplifiedNewParty)
+            ? prevParty
+            : newParty
+        })
+      })
 
       // @ts-expect-error - SDK type mismatch
       OBR.broadcast.onMessage('funky_dice_roller', ({ data: { dice } }) => {

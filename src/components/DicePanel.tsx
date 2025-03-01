@@ -137,9 +137,9 @@ const DicePanel = ({
 
           <Slider
             min={0}
-            max={1}
-            step={0.1}
-            defaultValue={[0.15]}
+            max={0.5}
+            step={0.01}
+            defaultValue={[0.1]}
             onValueChange={(e) => setVolume(e[0])}
             className="z-10 hidden w-32 h-4 rounded-full outline outline-white group-hover:block bg-stone-950"
           />
